@@ -1,0 +1,12 @@
+[Core]
+module = senderscore
+name = Senderscore
+
+[Documentation]
+description = Get the sendreputation of a given ip
+
+[Python]
+version = 3
+
+[Errbot]
+min = 4.0.0
