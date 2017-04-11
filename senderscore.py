@@ -12,8 +12,8 @@ class SenderScore(BotPlugin):
             ipadresses = args
         else:
             hostname = args
-            ips = self.get_host_ips(hostname)
-        
+            ipadresses = self.get_host_ips(hostname)
+
         for ip in ipadresses:
             score = self.get_senderscores(ip)
             if score:
