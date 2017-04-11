@@ -9,7 +9,7 @@ class SenderScore(BotPlugin):
     def senderscore(self, msg, args):
         """Retrieve mail reputation usage !senderscore [IP/Hostname]"""
         if self.is_ip(args):
-            ipaddresses = args
+            ipaddresses = [args]
         else:
             hostname = args
             ipaddresses = self.get_host_ips(hostname)
