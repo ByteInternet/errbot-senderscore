@@ -3,20 +3,19 @@ from errbot import BotPlugin, botcmd
 
 
 class SenderScore(BotPlugin):
-    """Plugin to show the mail score of the given adress"""
+    """Plugin to show the mail score of the given address"""
 
     @botcmd
     def senderscore(self, msg, args):
         """retrieve mail reputation usage !senderscore [IP/Hostname]"""
-        try:
-            socket.inet_aton(args)
+        if self.is_ip(args):
             ipadress = args
             score = self.get_senderscores(ipadress)
             if score:
                 yield ("The reputation of {} is: {}".format(ipadress, score))
             else:
                 yield ("Could'nt find a reputation for: {}".format(ipadress))
-        except OSError:
+        else:
             hostname = args
             ips = self.get_host_ips(hostname)
             for ip in ips:
@@ -47,3 +46,10 @@ class SenderScore(BotPlugin):
         except socket.gaierror as e:
             return None
         return ret[2]
+
+    def is_ip(self, value):
+        try:
+            socket.inet_aton(value)
+            return True
+        except OSError:
+            return False
