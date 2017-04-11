@@ -9,21 +9,17 @@ class SenderScore(BotPlugin):
     def senderscore(self, msg, args):
         """retrieve mail reputation usage !senderscore [IP/Hostname]"""
         if self.is_ip(args):
-            ipadress = args
-            score = self.get_senderscores(ipadress)
-            if score:
-                yield ("The reputation of {} is: {}".format(ipadress, score))
-            else:
-                yield ("Could'nt find a reputation for: {}".format(ipadress))
+            ipadresses = args
         else:
             hostname = args
             ips = self.get_host_ips(hostname)
-            for ip in ips:
-                score = self.get_senderscores(ip)
-                if score:
-                    yield ("The reputation of {} is: {}".format(ip, score))
-                else:
-                    yield ("Could'nt find a reputation for: {}".format(ip))
+        
+        for ip in ipadresses:
+            score = self.get_senderscores(ip)
+            if score:
+                yield ("The reputation of {} is: {}".format(ip, score))
+            else:
+                yield ("Could'nt find a reputation for: {}".format(ip))
 
     def get_senderscores(self, ip):
         try:
