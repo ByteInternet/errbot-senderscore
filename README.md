@@ -2,6 +2,7 @@ errbot-senderscore
 ----------
 
 This is a plugin for [errbot](http://errbot.io/) which lookup a reputation of a ip.
+You can also give a hostname which this plugin will resolve to IP addresses and return the score of each address.
 
 Usage
 -----
